@@ -92,7 +92,7 @@ const transport = custom(
 ### name (optional)
 
 - **Type:** `string`
-- **Default:** `"Ethereum Provider"`
+- **Default:** `"Custom Provider"`
 
 A name for the Transport
 

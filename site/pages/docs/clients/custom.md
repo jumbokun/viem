@@ -254,7 +254,7 @@ const client = createClient({
 ### key (optional)
 
 - **Type:** `string`
-- **Default:** `"public"`
+- **Default:** `"base"`
 
 A key for the Client.
 
@@ -273,7 +273,7 @@ const client = createClient({
 ### name (optional)
 
 - **Type:** `string`
-- **Default:** `"Public Client"`
+- **Default:** `"Base Client"`
 
 A name for the Client.
 
