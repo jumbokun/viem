@@ -22,6 +22,25 @@ const feeHistory: RpcFeeHistory = {
   ],
 }
 
+test('deserializes blob fee history', () => {
+  expect(
+    formatFeeHistory({
+      ...feeHistory,
+      baseFeePerBlobGas: ['0x1', '0x1', '0x3', '0x5', '0x4'],
+      blobGasUsedRatio: [0, 0.5, 1, 0.25],
+    }),
+  ).toMatchObject({
+    baseFeePerBlobGas: [1n, 1n, 3n, 5n, 4n],
+    blobGasUsedRatio: [0, 0.5, 1, 0.25],
+  })
+})
+
+test('omits blob fields the node does not return', () => {
+  const formatted = formatFeeHistory(feeHistory)
+  expect('baseFeePerBlobGas' in formatted).toBe(false)
+  expect('blobGasUsedRatio' in formatted).toBe(false)
+})
+
 test('deserializes fee history', () => {
   expect(formatFeeHistory(feeHistory)).toMatchInlineSnapshot(`
     {

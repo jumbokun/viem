@@ -6,8 +6,17 @@ export type FeeHistory<quantity = bigint> = {
    * the newest of the returned range, because this value can be derived from the newest block.
    * Zeroes are returned for pre-EIP-1559 blocks. */
   baseFeePerGas: quantity[]
+  /**
+   * An array of block base fees per blob gas (in wei). This includes the next block after
+   * the newest of the returned range. Zeroes are returned for pre-EIP-4844 blocks.
+   * Only returned by nodes that support EIP-4844. */
+  baseFeePerBlobGas?: quantity[] | undefined
   /** An array of block gas used ratios. These are calculated as the ratio of gasUsed and gasLimit. */
   gasUsedRatio: number[]
+  /**
+   * An array of block blob gas used ratios. These are calculated as the ratio of blobGasUsed and
+   * the max blob gas per block. Only returned by nodes that support EIP-4844. */
+  blobGasUsedRatio?: number[] | undefined
   /** Lowest number block of the returned range. */
   oldestBlock: quantity
   /** An array of effective priority fees (in wei) per gas data points from a single block. All zeroes are returned if the block is empty. */

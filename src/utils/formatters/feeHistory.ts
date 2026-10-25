@@ -12,5 +12,15 @@ export function formatFeeHistory(feeHistory: RpcFeeHistory): FeeHistory {
     reward: feeHistory.reward?.map((reward) =>
       reward.map((value) => BigInt(value)),
     ),
+    ...(feeHistory.baseFeePerBlobGas
+      ? {
+          baseFeePerBlobGas: feeHistory.baseFeePerBlobGas.map((value) =>
+            BigInt(value),
+          ),
+        }
+      : {}),
+    ...(feeHistory.blobGasUsedRatio
+      ? { blobGasUsedRatio: feeHistory.blobGasUsedRatio }
+      : {}),
   }
 }
